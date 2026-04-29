@@ -1,6 +1,6 @@
 # Anduril — Agent Task Manager
 
-A lightweight task management system designed for AI coding agents (Antigravity/Claude). Provides a visual queue of prioritized tasks with image support, status tracking, and WebP optimization.
+A lightweight task management system designed for AI coding agents (Antigravity/Claude/Codex). Provides a visual queue of prioritized tasks with image support, status tracking, and WebP optimization.
 
 ## Features
 

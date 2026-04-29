@@ -1,0 +1,6 @@
+node_modules/
+images/
+server.log
+server.err.log
+tasks.md
+*.webp

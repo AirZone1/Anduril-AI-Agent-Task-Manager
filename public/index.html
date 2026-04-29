@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anduril - Agent Task Manager</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="header-left">
+                <i data-lucide="bot"></i>
+                <h1>Anduril - Agent Task Manager</h1>
+            </div>
+            <div class="header-right">
+                <span class="status-indicator" id="syncStatus">
+                    <i data-lucide="refresh-cw" class="spin"></i>
+                    מסנכרן...
+                </span>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">
+                    <i data-lucide="sun" class="light-icon"></i>
+                    <i data-lucide="moon" class="dark-icon"></i>
+                </button>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="add-task-section card">
+                <h2>משימה חדשה</h2>
+                <div class="add-task-form">
+                    <div class="form-row">
+                        <select id="taskPriority" style="margin-bottom: 12px;">
+                            <option value="Normal">🟢 רגילה</option>
+                            <option value="High">🟡 גבוהה</option>
+                            <option value="Urgent">🔴 דחופה</option>
+                        </select>
+                    </div>
+                    <textarea id="taskDescription" placeholder="פירוט המשימה... אפשר להדביק כאן תמונות (Ctrl+V)"></textarea>
+                    
+                    <div class="form-actions">
+                        <span class="hint">הדבק תמונות ישירות לתיבת הטקסט! <i data-lucide="image"></i></span>
+                        <button id="addTaskBtn" class="btn btn-primary">
+                            <i data-lucide="plus"></i> הוסף משימה
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <div class="tasks-container">
+                <section class="priority-section" id="section-Urgent">
+                    <h3 class="priority-title urgent">
+                        <i data-lucide="alert-triangle"></i> דחוף (Urgent)
+                    </h3>
+                    <div class="task-list" id="list-Urgent"></div>
+                </section>
+
+                <section class="priority-section" id="section-High">
+                    <h3 class="priority-title high">
+                        <i data-lucide="alert-circle"></i> גבוה (High)
+                    </h3>
+                    <div class="task-list" id="list-High"></div>
+                </section>
+
+                <section class="priority-section" id="section-Normal">
+                    <h3 class="priority-title normal">
+                        <i data-lucide="check-circle"></i> רגיל (Normal)
+                    </h3>
+                    <div class="task-list" id="list-Normal"></div>
+                </section>
+
+                <section class="priority-section" id="section-Done">
+                    <h3 class="priority-title done">
+                        <i data-lucide="archive"></i> הושלמו (Done)
+                    </h3>
+                    <div class="task-list" id="list-Done"></div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <template id="task-template">
+        <div class="task-card">
+            <div class="task-view">
+                <div class="task-header">
+                    <label class="checkbox-container">
+                        <input type="checkbox" class="task-checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                    <div class="task-actions">
+                        <button class="edit-btn" aria-label="Edit Task">
+                            <i data-lucide="edit-2"></i>
+                        </button>
+                        <button class="delete-btn" aria-label="Delete Task">
+                            <i data-lucide="trash-2"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="task-body markdown-body"></div>
+            </div>
+            <div class="task-edit" style="display: none;">
+                <div class="inline-edit-form">
+                    <div class="form-row">
+                        <select class="edit-priority" style="margin-bottom: 12px;">
+                            <option value="Normal">🟢 רגילה</option>
+                            <option value="High">🟡 גבוהה</option>
+                            <option value="Urgent">🔴 דחופה</option>
+                        </select>
+                    </div>
+                    <textarea class="edit-desc" placeholder="פירוט המשימה..."></textarea>
+                    <div class="inline-edit-actions">
+                        <button class="btn cancel-edit-btn">ביטול</button>
+                        <button class="btn btn-primary save-edit-btn">שמור שינויים</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
